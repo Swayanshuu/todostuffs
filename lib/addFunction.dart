@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todostuffs/mainScreen.dart';
 
+// ignore: must_be_immutable
 class Addfunction extends StatefulWidget {
   void Function({required String todoText}) addTodo;
  Addfunction({super.key, required this.addTodo});
