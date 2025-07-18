@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class Addfunction extends StatefulWidget {
-  void Function({required String todoText}) addTodo;
+  bool Function({required String todoText}) addTodo;
  Addfunction({super.key, required this.addTodo});
 
   @override
@@ -21,17 +21,39 @@ class _AddfunctionState extends State<Addfunction> {
 
         TextField(
           onSubmitted: (value) {
-            if(todoText.text.isNotEmpty){
-              widget.addTodo(todoText: todoText.text);
+            if(todoText.text.trim().isNotEmpty){
+              widget.addTodo(todoText: todoText.text.trim());
             }
-            todoText.text = " ";
+            todoText.text = "";
           },
           controller: todoText,
+          style: TextStyle(color: Colors.black),
           decoration: InputDecoration(
             contentPadding: EdgeInsets.all(20),
-            hintText: "Write your task",
+            hintText: "Write your task",hintStyle: TextStyle(color: Colors.black),
           ),
-        )
+        ),
+
+        SizedBox(height: 20,),
+
+        ElevatedButton(onPressed: ()async{
+
+          String input = todoText.text.trim();
+          
+
+          if(input.trim().isEmpty){
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Text cant be Empty!")));
+
+            return;
+          }
+
+          bool added = widget.addTodo(todoText: input.trim());
+
+          if(added){
+            todoText.text = "";
+            Navigator.pop(context);
+          }
+        }, child: Text("Add"))
       ],
     );
   }
