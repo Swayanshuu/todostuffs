@@ -47,7 +47,7 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
                 onItemClicked(index);
               },
               splashColor: Colors.grey,
-              tileColor: Colors.white,  
+              // tileColor: Colors.white,  
               title: Text(todolist),
               
             

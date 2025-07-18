@@ -4,7 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todostuffs/todoListBuilder.dart';
 
 class Mainscreen extends StatefulWidget {
-  const Mainscreen({super.key});
+  final VoidCallback toggleTheme;
+  final bool isDarkmode;
+  const Mainscreen({super.key, required this.isDarkmode, required this.toggleTheme});
 
   @override
   State<Mainscreen> createState() => _MainscreenState();
@@ -64,6 +66,7 @@ class _MainscreenState extends State<Mainscreen> {
   @override
   void initState() {
     loadData();
+    
     // Super.initState
     super.initState();
   }
@@ -86,43 +89,100 @@ class _MainscreenState extends State<Mainscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 148, 143, 148),
         shape: CircleBorder(),
-        child: Icon(Icons.add,color: Colors.black),
+        child: Icon(Icons.add,color: Colors.white,),
         onPressed: showaddtodoBottomSheet
       ),
 
       drawer: Drawer(
-        backgroundColor: Colors.white,
-        child: Center(child: Text(
-          "Shibu",
-          style: TextStyle(color: Colors.black),)),
+        child: Column(
+          children: [
+            Container(
+              color: const Color.fromARGB(255, 108, 109, 109),
+              height: 200,
+              width: double.infinity,
+              child: Column(
+
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+                  Container(height: 30,
+                  width: double.infinity,),
+
+                  ClipOval(
+                    child: Image.asset(assets/images/SHIBU.jpg),
+                  )
+                  
+                  // Container(
+                  //     height: 100,
+                  //     width: 100,
+                  //     decoration: BoxDecoration(
+                  //       color: const Color.fromARGB(255, 23, 23, 23),
+                  //       borderRadius: BorderRadius.circular(1000),
+                  //       border: Border.all(color: Colors.white,width: 2)
+                        
+                  //     ),
+                  //   ),
+
+                    SizedBox(height: 10,),
+
+                    Text("SWAYANSHU", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25,fontFamily: 'Poppins'),),
+
+                    SizedBox(height: 20,)
+                  
+                ],
+              ),
+            ),
+
+            SizedBox(height: 1,),
+
+            Text("SOCIAL LINKS: ",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,fontFamily: 'Poppins'),),
+
+            Container(
+              height: 100,
+              width: double.infinity,
+              decoration: BoxDecoration(color: Colors.blueGrey),
+            )
+          ],
+        ),
       ),
 
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        // backgroundColor: Colors.black,
         centerTitle: true,
         title: Text(
           "TODO Stuffs",
           style: TextStyle(
-            color: Colors.white,
+            // color: Colors.white,
             fontWeight: FontWeight.bold),),
-        iconTheme: IconThemeData(color: Colors.white),
+        // iconTheme: IconThemeData(color: Colors.white),
+
+        actions: [
+          IconButton(
+            onPressed: widget.toggleTheme, 
+            icon: Icon(widget.isDarkmode ? Icons.sunny : Icons.nights_stay),
+
+            tooltip: widget.isDarkmode ? 'Light Mode' : 'Dark Mode',
+            ),
+
+            
+
+            
+        ],
 
         //for thin line
         bottom: PreferredSize(
-  preferredSize: Size.fromHeight(.5),
+  preferredSize: Size.fromHeight(1),
   child: Container(
-    color: Colors.grey[300], // or any color you want for the line
-    height: .2,
+    color: const Color.fromARGB(255, 58, 58, 58), // or any color you want for the line
+    height: 1,
   ),
 ),
 
       ),
 
-      body: Container(
-        color: Colors.black,
-        child: Todolistbuilder(todoList:   todoList, updateLocalData: updateLocalData,))
+      body:Todolistbuilder(todoList:   todoList, updateLocalData: updateLocalData,)
       );
   }
 }
