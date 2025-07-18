@@ -1,7 +1,9 @@
+import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:todostuffs/addFunction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todostuffs/todoListBuilder.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Mainscreen extends StatefulWidget {
   final VoidCallback toggleTheme;
@@ -26,7 +28,7 @@ class _MainscreenState extends State<Mainscreen> {
           builder: (context) {
             return AlertDialog(
 
-              backgroundColor: Colors.red,
+              backgroundColor: Colors.red.withOpacity(.9),
               title: Text("Already exists",style: TextStyle(color: Colors.white),),
               content: Text("This todo data already exists.",style: TextStyle(color: Colors.white),),
               actions: [
@@ -34,7 +36,7 @@ class _MainscreenState extends State<Mainscreen> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Center(child: Text("Close")))
+                    child: Center(child: Text("Close",style: TextStyle(color: Colors.white),)))
               ],
             );
           });
@@ -67,21 +69,28 @@ class _MainscreenState extends State<Mainscreen> {
   void initState() {
     loadData();
     
+    
     // Super.initState
     super.initState();
   }
 
 
   void showaddtodoBottomSheet(){
-    showModalBottomSheet(context: context, builder: (context){
-      return Container(
-        decoration: BoxDecoration(color: Colors.white),
+    showModalBottomSheet(context: context,
+    isScrollControlled: true,
+     builder: (context){
+      return Padding(
+        padding: MediaQuery.of(context).viewInsets,
         child: Container(
-          child: Addfunction(addTodo: addTodo,)
-          ),
-        height: 200,
-        width: double.infinity,
-      
+          decoration: BoxDecoration(color: Colors.white),
+            height: 200,
+          width: double.infinity,
+            padding: EdgeInsets.all(0),
+            child: Addfunction(addTodo: addTodo,),
+            
+          
+        
+        ),
       );
     });
   }
@@ -144,7 +153,7 @@ class _MainscreenState extends State<Mainscreen> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
               alignment: Alignment.centerLeft,
-              child: Text("SOCIAL LINKS : ",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,fontFamily: 'Poppins'),)),
+              child: Text("SOCIAL LINKS : ",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,fontFamily: 'Poppins'),)),
 
 
             SizedBox(height: 7,),
@@ -154,28 +163,54 @@ class _MainscreenState extends State<Mainscreen> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               alignment: Alignment.centerLeft,
               child: Container(
-                height: 50,
+                height: 40,
                 width: 250,
                 decoration: BoxDecoration(color: Colors.grey.withOpacity(.3),borderRadius: BorderRadius.circular(12)),
 
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(Icons.linked_camera_outlined),
-                    Icon(Icons.linked_camera_outlined),
-                    Icon(Icons.linked_camera_outlined),
-                    Icon(Icons.linked_camera_outlined),
-                  ],
-                )
+                 children: [
+
+                  IconButton(
+                    icon: Icon(FeatherIcons.instagram), 
+                    onPressed: (){
+                      launchUrl(Uri.parse("instagram.com/swayan.shuuu"));
+                    }),
+
+                    IconButton(
+                    icon: Icon(FeatherIcons.linkedin), 
+                    onPressed: (){
+                      launchUrl(Uri.parse("https://www.linkedin.com/in/swayanshu-sarthak-sadangi-b6751931a/"));
+                    }),
+
+                    IconButton(
+                    icon: Icon(FeatherIcons.github), 
+                    onPressed: (){
+                      launchUrl(Uri.parse("https://github.com/Swayanshuu"));
+                    }),
+
+                    IconButton(
+                    icon: Icon(FeatherIcons.mail), 
+                    onPressed: (){
+                      launchUrl(Uri.parse("mailto:swayanshu119@gmail.com"));
+                    }),
+                 ],
+                ),
+
+
               ),
-            )
+            ),
+
+            SizedBox(height: 370,),
+            Text("© 2025 TODO Stuffs. All rights reserved.",style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.bold, fontSize: 10),),
           ],
         ),
       ),
 
       appBar: AppBar(
         // backgroundColor: Colors.black,
+        automaticallyImplyLeading: true,
         centerTitle: true,
         title: Text(
           "TODO Stuffs",

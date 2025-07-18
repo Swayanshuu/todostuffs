@@ -14,12 +14,17 @@ class _AddfunctionState extends State<Addfunction> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      
+      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+      // crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        
         
         Text("TASK",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 30),),
 
         TextField(
+          autocorrect: true,
+          autofocus: true,
           onSubmitted: (value) {
             if(todoText.text.trim().isNotEmpty){
               widget.addTodo(todoText: todoText.text.trim());
@@ -31,6 +36,7 @@ class _AddfunctionState extends State<Addfunction> {
           decoration: InputDecoration(
             contentPadding: EdgeInsets.all(20),
             hintText: "Write your task",hintStyle: TextStyle(color: Colors.black),
+            labelText: "Tap to write here..."
           ),
         ),
 
@@ -51,6 +57,7 @@ class _AddfunctionState extends State<Addfunction> {
 
           if(added){
             todoText.text = "";
+            FocusScope.of(context).unfocus(); //hide keyboard
             Navigator.pop(context);
           }
         }, child: Text("Add"))

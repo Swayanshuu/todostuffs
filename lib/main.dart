@@ -1,25 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todostuffs/mainScreen.dart';
 
-void main(){
-  runApp(Myapp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Load saved theme mode from shared preferences
+  final prefs = await SharedPreferences.getInstance();
+  final isDarkmode = prefs.getBool('isDark') ?? false;
+
+  runApp(MyApp(initialDarkMode: isDarkmode));
 }
 
-class Myapp extends StatefulWidget {
-  const Myapp({super.key});
+class MyApp extends StatefulWidget {
+  final bool initialDarkMode;
+  const MyApp({super.key, required this.initialDarkMode});
 
   @override
-  State<Myapp> createState() => _MyappState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _MyappState extends State<Myapp> {
-  bool isDarkmode = false;
+class _MyAppState extends State<MyApp> {
+  late bool isDarkmode;
 
-  void toggleTheme () {
+  @override
+  void initState() {
+    super.initState();
+    isDarkmode = widget.initialDarkMode;
+  }
+
+  void toggleTheme() async {
     setState(() {
       isDarkmode = !isDarkmode;
     });
+
+    // Save the theme preference
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isDark', isDarkmode);
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,7 +46,7 @@ class _MyappState extends State<Myapp> {
       darkTheme: ThemeData.dark(),
       themeMode: isDarkmode ? ThemeMode.dark : ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home:Mainscreen(
+      home: Mainscreen(
         toggleTheme: toggleTheme,
         isDarkmode: isDarkmode,
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Todolistbuilder extends StatefulWidget {
 
   List<String> todoList;
@@ -18,6 +19,7 @@ Todolistbuilder({super.key, required this.todoList,required this.updateLocalData
 class _TodolistbuilderState extends State<Todolistbuilder> {
 
   void onItemClicked( int index){
+    final todolist = widget.todoList[index];
     showModalBottomSheet(context: context,
                   
                    builder: (context){
@@ -29,6 +31,8 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
                     });
                     widget.updateLocalData();
                     Navigator.pop(context);
+
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$todolist removed!")));
                   }, child: Text("Mark as done!"))
                 );
               });
