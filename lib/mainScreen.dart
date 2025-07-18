@@ -110,20 +110,24 @@ class _MainscreenState extends State<Mainscreen> {
                   Container(height: 30,
                   width: double.infinity,),
 
-                  ClipOval(
-                    child: Image.asset(assets/images/SHIBU.jpg),
-                  )
-                  
-                  // Container(
-                  //     height: 100,
-                  //     width: 100,
-                  //     decoration: BoxDecoration(
-                  //       color: const Color.fromARGB(255, 23, 23, 23),
-                  //       borderRadius: BorderRadius.circular(1000),
-                  //       border: Border.all(color: Colors.white,width: 2)
-                        
-                  //     ),
-                  //   ),
+                  Container(
+                    height: 100,
+                    width: 100,
+                    padding: EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(1000),
+                      color: Colors.transparent,
+                      border: Border.all(color: Colors.white),
+                    ),
+                    child: ClipOval(
+                      child: Image.asset(
+                        "assets/images/SHIBU.jpg",
+                        height: 90,
+                        width: 90,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
 
                     SizedBox(height: 10,),
 
@@ -135,14 +139,36 @@ class _MainscreenState extends State<Mainscreen> {
               ),
             ),
 
-            SizedBox(height: 1,),
-
-            Text("SOCIAL LINKS: ",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,fontFamily: 'Poppins'),),
+            SizedBox(height: 7,),
 
             Container(
-              height: 100,
-              width: double.infinity,
-              decoration: BoxDecoration(color: Colors.blueGrey),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              alignment: Alignment.centerLeft,
+              child: Text("SOCIAL LINKS : ",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,fontFamily: 'Poppins'),)),
+
+
+            SizedBox(height: 7,),
+
+
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              alignment: Alignment.centerLeft,
+              child: Container(
+                height: 50,
+                width: 250,
+                decoration: BoxDecoration(color: Colors.grey.withOpacity(.3),borderRadius: BorderRadius.circular(12)),
+
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Icon(Icons.linked_camera_outlined),
+                    Icon(Icons.linked_camera_outlined),
+                    Icon(Icons.linked_camera_outlined),
+                    Icon(Icons.linked_camera_outlined),
+                  ],
+                )
+              ),
             )
           ],
         ),
