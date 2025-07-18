@@ -213,7 +213,7 @@ class _MainscreenState extends State<Mainscreen> {
             Spacer(), // pushes the folowing widget to the bottom
 
             Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
+              padding: const EdgeInsets.only(bottom: 50.0),
               child: Text("© 2025 TODO Stuffs. All rights reserved.",style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.bold, fontSize: 10),),
             ),
           ],
