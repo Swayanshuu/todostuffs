@@ -228,7 +228,8 @@ class _MainscreenState extends State<Mainscreen> {
           "TODO Stuffs",
           style: TextStyle(
             // color: Colors.white,
-            fontWeight: FontWeight.bold),),
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Poppins'),),
         // iconTheme: IconThemeData(color: Colors.white),
 
         actions: [
