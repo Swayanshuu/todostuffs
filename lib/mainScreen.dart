@@ -107,6 +107,8 @@ class _MainscreenState extends State<Mainscreen> {
       drawer: Drawer(
         child: Column(
           children: [
+
+            // top profile section
             Container(
               color: const Color.fromARGB(255, 108, 109, 109),
               height: 200,
@@ -148,62 +150,72 @@ class _MainscreenState extends State<Mainscreen> {
               ),
             ),
 
-            SizedBox(height: 7,),
-
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              alignment: Alignment.centerLeft,
-              child: Text("SOCIAL LINKS : ",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,fontFamily: 'Poppins'),)),
+            SizedBox(height: 20,),
 
 
-            SizedBox(height: 7,),
-
-
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              alignment: Alignment.centerLeft,
-              child: Container(
-                height: 40,
-                width: 250,
-                decoration: BoxDecoration(color: Colors.grey.withOpacity(.3),borderRadius: BorderRadius.circular(12)),
-
-                child: Row(
-                  
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                 children: [
-
-                  IconButton(
-                    icon: Icon(FeatherIcons.instagram), 
-                    onPressed: (){
-                      launchUrl(Uri.parse("instagram.com/swayan.shuuu"));
-                    }),
-
-                    IconButton(
-                    icon: Icon(FeatherIcons.linkedin), 
-                    onPressed: (){
-                      launchUrl(Uri.parse("https://www.linkedin.com/in/swayanshu-sarthak-sadangi-b6751931a/"));
-                    }),
-
-                    IconButton(
-                    icon: Icon(FeatherIcons.github), 
-                    onPressed: (){
-                      launchUrl(Uri.parse("https://github.com/Swayanshuu"));
-                    }),
-
-                    IconButton(
-                    icon: Icon(FeatherIcons.mail), 
-                    onPressed: (){
-                      launchUrl(Uri.parse("mailto:swayanshu119@gmail.com"));
-                    }),
-                 ],
+            // social link section
+            Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  alignment: Alignment.centerLeft,
+                  child: Text("SOCIAL LINKS : ",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,fontFamily: 'Poppins'),)),
+                
+                
+                SizedBox(height: 7,),
+                
+                
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    height: 40,
+                    width: 250,
+                    decoration: BoxDecoration(color: Colors.grey.withOpacity(.3),borderRadius: BorderRadius.circular(12)),
+                
+                    child: Row(
+                      
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                     children: [
+                
+                      IconButton(
+                        icon: Icon(FeatherIcons.instagram), 
+                        onPressed: (){
+                          launchUrl(Uri.parse("instagram.com/swayan.shuuu"));
+                        }),
+                
+                        IconButton(
+                        icon: Icon(FeatherIcons.linkedin), 
+                        onPressed: (){
+                          launchUrl(Uri.parse("https://www.linkedin.com/in/swayanshu-sarthak-sadangi-b6751931a/"));
+                        }),
+                
+                        IconButton(
+                        icon: Icon(FeatherIcons.github), 
+                        onPressed: (){
+                          launchUrl(Uri.parse("https://github.com/Swayanshuu"));
+                        }),
+                
+                        IconButton(
+                        icon: Icon(FeatherIcons.mail), 
+                        onPressed: (){
+                          launchUrl(Uri.parse("mailto:swayanshu119@gmail.com"));
+                        }),
+                     ],
+                    ),
+                
+                
+                  ),
                 ),
-
-
-              ),
+              ],
             ),
 
-            SizedBox(height: 370,),
-            Text("© 2025 TODO Stuffs. All rights reserved.",style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.bold, fontSize: 10),),
+            Spacer(), // pushes the folowing widget to the bottom
+
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: Text("© 2025 TODO Stuffs. All rights reserved.",style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.bold, fontSize: 10),),
+            ),
           ],
         ),
       ),
