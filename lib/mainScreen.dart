@@ -224,12 +224,17 @@ class _MainscreenState extends State<Mainscreen> {
         // backgroundColor: Colors.black,
         automaticallyImplyLeading: true,
         centerTitle: true,
-        title: Text(
-          "TODO Stuffs",
-          style: TextStyle(
-            // color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Poppins'),),
+        title: Column(
+          children: [
+            Text(
+              "TODO Stuffs",
+              style: TextStyle(
+                // color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Poppins'),),
+            Text("A Smart Task Organizer App",style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),)
+          ],
+        ),
         // iconTheme: IconThemeData(color: Colors.white),
 
         actions: [
