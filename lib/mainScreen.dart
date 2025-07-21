@@ -181,7 +181,7 @@ class _MainscreenState extends State<Mainscreen> {
                       IconButton(
                         icon: Icon(FeatherIcons.instagram), 
                         onPressed: (){
-                          launchUrl(Uri.parse("instagram.com/swayan.shuuu"));
+                          launchUrl(Uri.parse("https://www.instagram.com/swayan.shuuu"));
                         }),
                 
                         IconButton(
