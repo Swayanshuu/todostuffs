@@ -1,9 +1,33 @@
 import 'package:flutter/material.dart';
 
+class TodoItem {
+  final String task;
+  final DateTime addedTime;
+
+  TodoItem({required this.task, required this.addedTime});
+
+  @override
+  String toString() {
+    return '$task|${addedTime.toIso8601String()}';
+  }
+
+  factory TodoItem.fromString(String str) {
+    final parts = str.split('|');
+    return TodoItem(
+      task: parts[0],
+      addedTime: DateTime.parse(parts[1]),
+    );
+  }
+}
+
+
+
 // ignore: must_be_immutable
 class Todolistbuilder extends StatefulWidget {
 
-  List<String> todoList;
+  
+
+  List<TodoItem> todoList;
 
   void Function() updateLocalData;
 
@@ -45,14 +69,24 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
       :ListView.builder(
         itemCount: widget.todoList.length,
         itemBuilder: (BuildContext context, int index){
-          final todolist = widget.todoList[index];
+          final todoItem = widget.todoList[index];
         return ListTile(
               onTap: (){
                 onItemClicked(index);
               },
               splashColor: Colors.grey,
               // tileColor: Colors.white,  
-              title: Text(todolist),
+              title: Column(
+                children: [
+                  Text(todoItem.task),
+
+                  SizedBox(height: 4,),
+
+                  Text(widget.todoList[index].addedTime.toLocal().toString().substring(0, 16).replaceFirst('T', ' '),
+      style: TextStyle(fontSize: 12, color: Colors.grey[600]),)
+                ],
+              ),
+              //subtitle: Text("Added on : ${todoItem.addedTime.toLocal().toString().substring(0,16)}"),
               
             
           );

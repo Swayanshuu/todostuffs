@@ -15,12 +15,12 @@ class Mainscreen extends StatefulWidget {
 }
 
 class _MainscreenState extends State<Mainscreen> {
-  List<String> todoList = [];
+  List<TodoItem> todoList = [];
   bool addTodo({required String todoText}){
 
     String normalizedText = todoText.trim().toLowerCase();
 
-    bool isDuplicate = todoList.any((item) => item.trim().toLowerCase() == normalizedText);
+    bool isDuplicate = todoList.any((item) => item.task.trim().toLowerCase() == normalizedText);
     if(isDuplicate){
       showDialog(
         
@@ -45,7 +45,7 @@ class _MainscreenState extends State<Mainscreen> {
     }
 
     setState(() {
-      todoList.insert(0, todoText);
+      todoList.insert(0, TodoItem(task: todoText, addedTime: DateTime.now()));
       updateLocalData();
     });
 
@@ -53,17 +53,27 @@ class _MainscreenState extends State<Mainscreen> {
     
   }
 
-  void updateLocalData()async{
-    // Obtain shared preferences.
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList('todoList', todoList);
-  }
+  void updateLocalData() async {
+  final prefs = await SharedPreferences.getInstance();
+  List<String> formattedList = todoList.map((item) => item.toString()).toList();
+  await prefs.setStringList('todoList', formattedList);
+}
+
+
 
   void loadData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    todoList = prefs.getStringList("todoList") ?? [];
-    setState(() {});
+  final prefs = await SharedPreferences.getInstance();
+  final storedList = prefs.getStringList('todoList');
+
+  if (storedList != null) {
+    todoList = storedList.map((str) => TodoItem.fromString(str)).toList();
+  } else {
+    todoList = [];
   }
+
+  setState(() {});
+}
+
 
   @override
   void initState() {
@@ -261,7 +271,7 @@ class _MainscreenState extends State<Mainscreen> {
 
       ),
 
-      body:Todolistbuilder(todoList:   todoList, updateLocalData: updateLocalData,)
+      body:Todolistbuilder(todoList: todoList, updateLocalData: updateLocalData,)
       );
   }
 }
