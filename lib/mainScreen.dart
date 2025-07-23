@@ -112,7 +112,7 @@ class _MainscreenState extends State<Mainscreen> {
   Widget build(BuildContext context) {
     if(isLoading){
       return Scaffold(
-        body: CircularProgressIndicator(), // loading spinner
+        body: Center(child: CircularProgressIndicator()), // loading spinner
       );
     }
 
