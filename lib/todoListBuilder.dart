@@ -77,13 +77,14 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
               splashColor: Colors.grey,
               // tileColor: Colors.white,  
               title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(todoItem.task),
 
                   SizedBox(height: 4,),
 
                   Text(widget.todoList[index].addedTime.toLocal().toString().substring(0, 16).replaceFirst('T', ' '),
-      style: TextStyle(fontSize: 12, color: Colors.grey[600]),)
+      style: TextStyle(fontSize: 10, color: const Color.fromARGB(255, 113, 110, 110)),)
                 ],
               ),
               //subtitle: Text("Added on : ${todoItem.addedTime.toLocal().toString().substring(0,16)}"),
