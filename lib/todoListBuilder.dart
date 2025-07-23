@@ -50,13 +50,14 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
                 return Container(
                   padding: EdgeInsets.all(20),
                   child: ElevatedButton(onPressed: (){
+                    final removedTasked = todolist.task;
                     setState(() {
                       widget.todoList.removeAt( index);
                     });
                     widget.updateLocalData();
                     Navigator.pop(context);
 
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$todolist removed!")));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$removedTasked removed!")));
                   }, child: Text("Mark as done!"))
                 );
               });

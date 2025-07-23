@@ -23,7 +23,7 @@ class _AddfunctionState extends State<Addfunction> {
         Text("TASK",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 30),),
 
         Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.only(left: 10,right: 10),
           child: TextField(
             autocorrect: true,
             autofocus: true,
@@ -38,7 +38,7 @@ class _AddfunctionState extends State<Addfunction> {
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(20),
               hintText: "Write your task",hintStyle: TextStyle(color: Colors.black),
-              labelText: "Tap to write here..."
+              labelText: "Tap to write"
             ),
           ),
         ),

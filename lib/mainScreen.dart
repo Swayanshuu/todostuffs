@@ -16,6 +16,7 @@ class Mainscreen extends StatefulWidget {
 
 class _MainscreenState extends State<Mainscreen> {
   List<TodoItem> todoList = [];
+  bool isLoading =  true;
   bool addTodo({required String todoText}){
 
     String normalizedText = todoText.trim().toLowerCase();
@@ -71,12 +72,15 @@ class _MainscreenState extends State<Mainscreen> {
     todoList = [];
   }
 
-  setState(() {});
+  setState(() {
+    isLoading = false;
+  });
 }
 
 
   @override
   void initState() {
+    super.initState();
     loadData();
     
     
@@ -106,6 +110,13 @@ class _MainscreenState extends State<Mainscreen> {
   }
   @override
   Widget build(BuildContext context) {
+    if(isLoading){
+      return Scaffold(
+        body: CircularProgressIndicator(), // loading spinner
+      );
+    }
+
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color.fromARGB(255, 148, 143, 148),
