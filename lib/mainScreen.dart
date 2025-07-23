@@ -67,7 +67,15 @@ class _MainscreenState extends State<Mainscreen> {
   final storedList = prefs.getStringList('todoList');
 
   if (storedList != null) {
-    todoList = storedList.map((str) => TodoItem.fromString(str)).toList();
+    todoList = storedList.map((str) {
+  try {
+    return TodoItem.fromString(str);
+  } catch (e) {
+    print("Error parsing todo: $e"); // optional: for debugging
+    return null; // skip this item
+  }
+}).whereType<TodoItem>().toList();
+
   } else {
     todoList = [];
   }
