@@ -82,10 +82,6 @@ class _MainscreenState extends State<Mainscreen> {
   void initState() {
     super.initState();
     loadData();
-    
-    
-    // Super.initState
-    super.initState();
   }
 
 
