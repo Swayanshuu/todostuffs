@@ -22,21 +22,24 @@ class _AddfunctionState extends State<Addfunction> {
         
         Text("TASK",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 30),),
 
-        TextField(
-          autocorrect: true,
-          autofocus: true,
-          onSubmitted: (value) {
-            if(todoText.text.trim().isNotEmpty){
-              widget.addTodo(todoText: todoText.text.trim());
-            }
-            todoText.text = "";
-          },
-          controller: todoText,
-          style: TextStyle(color: Colors.black),
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(20),
-            hintText: "Write your task",hintStyle: TextStyle(color: Colors.black),
-            labelText: "Tap to write here..."
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: TextField(
+            autocorrect: true,
+            autofocus: true,
+            onSubmitted: (value) {
+              if(todoText.text.trim().isNotEmpty){
+                widget.addTodo(todoText: todoText.text.trim());
+              }
+              todoText.text = "";
+            },
+            controller: todoText,
+            style: TextStyle(color: Colors.black),
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.all(20),
+              hintText: "Write your task",hintStyle: TextStyle(color: Colors.black),
+              labelText: "Tap to write here..."
+            ),
           ),
         ),
 
