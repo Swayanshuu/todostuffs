@@ -42,6 +42,46 @@ Todolistbuilder({super.key, required this.todoList,required this.updateLocalData
 
 class _TodolistbuilderState extends State<Todolistbuilder> {
 
+
+  void showEditdialog(int index){
+    final todolist = widget.todoList[index];
+    TextEditingController editController = TextEditingController(text: todolist.task);
+
+    showDialog(context: context,
+     builder: (context){
+      return AlertDialog(
+        title: Text("Edit"),
+        content: TextField(
+          controller: editController,
+          autofocus: true,
+          autocorrect: true,
+          decoration: InputDecoration(
+            hintText: "Edit your task",
+            border: OutlineInputBorder(),
+          ),
+        ),
+        actions: [
+
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+          }, child: Text("Cancel")),
+
+          ElevatedButton(onPressed: (){
+            String updateText = editController.text.trim();
+            if(updateText.isNotEmpty){
+              setState(() {
+                widget.todoList[index] = TodoItem(task: updateText, addedTime: todolist.addedTime);
+                widget.updateLocalData();
+              });
+            Navigator.pop(context);
+              
+            }
+          }, child: Text("Save")),
+        ],
+      );
+     });
+  }
+
   void onItemClicked( int index){
     final todolist = widget.todoList[index];
     showModalBottomSheet(context: context,
@@ -49,16 +89,31 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
                    builder: (context){
                 return Container(
                   padding: EdgeInsets.all(20),
-                  child: ElevatedButton(onPressed: (){
-                    final removedTasked = todolist.task;
-                    setState(() {
-                      widget.todoList.removeAt( index);
-                    });
-                    widget.updateLocalData();
-                    Navigator.pop(context);
+                  child: Column(
+                    children: [
+                      ElevatedButton.icon(onPressed: (){
+                        final removedTasked = todolist.task;
+                        setState(() {
+                          widget.todoList.removeAt(index);
+                        });
+                        widget.updateLocalData();
+                        Navigator.pop(context);
+                      
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$removedTasked removed!")));
+                      }, 
+                      icon: Icon(Icons.check),
+                      label: Text("Mark as done!")),
 
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$removedTasked removed!")));
-                  }, child: Text("Mark as done!"))
+                      SizedBox(height: 10,),
+
+                      ElevatedButton.icon(onPressed: (){
+                        Navigator.pop(context); //close the bottom sheet first
+                        showEditdialog(index); //then open edit dialog box
+                      }, 
+                      icon: Icon( Icons.edit),
+                      label: Text("Edit"))
+                    ],
+                  )
                 );
               });
   }
