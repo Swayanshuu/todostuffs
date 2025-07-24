@@ -45,13 +45,13 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
 
   void showEditdialog(int index){
     final todolist = widget.todoList[index];
-    TextEditingController editController = TextEditingController(text: todolist.task);
+    TextEditingController editController = TextEditingController(text: todolist.task); // main thing that edit the text and it is pre-filled
 
     showDialog(context: context,
      builder: (context){
       return AlertDialog(
         title: Text("Edit"),
-        content: TextField(
+        content: TextField( //text input for editing
           controller: editController,
           autofocus: true,
           autocorrect: true,
@@ -60,6 +60,8 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
             border: OutlineInputBorder(),
           ),
         ),
+
+        //buttons i.e casancel and save and their funtions on clicking them
         actions: [
 
           TextButton(onPressed: (){
@@ -70,7 +72,8 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
             String updateText = editController.text.trim();
             if(updateText.isNotEmpty){
               setState(() {
-                widget.todoList[index] = TodoItem(task: updateText, addedTime: todolist.addedTime);
+                // upadte the list with new text
+                widget.todoList[index] = TodoItem(task: updateText, addedTime: todolist.addedTime); // added the task with the wrong task's place
                 widget.updateLocalData();
               });
             Navigator.pop(context);
