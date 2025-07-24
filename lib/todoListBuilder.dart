@@ -50,13 +50,16 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
     showDialog(context: context,
      builder: (context){
       return AlertDialog(
-        title: Text("Edit"),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,//color changes acc. to theme
+        title: Center(child: Text("EDIT",style: TextStyle(fontWeight: FontWeight.bold),)),
         content: TextField( //text input for editing
           controller: editController,
           autofocus: true,
           autocorrect: true,
           decoration: InputDecoration(
-            hintText: "Edit your task",
+            hintText: "Update your task...",
+            contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
             border: OutlineInputBorder(),
           ),
         ),
@@ -66,7 +69,7 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
 
           TextButton(onPressed: (){
             Navigator.pop(context);
-          }, child: Text("Cancel")),
+          }, child: Text("Cancel",style: TextStyle(color: const Color.fromARGB(255, 105, 103, 103)))),
 
           ElevatedButton(onPressed: (){
             String updateText = editController.text.trim();
@@ -79,7 +82,7 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
             Navigator.pop(context);
               
             }
-          }, child: Text("Save")),
+          }, child: Text("Save",style: TextStyle(color: const Color.fromARGB(255, 103, 100, 100)),)),
         ],
       );
      });
@@ -92,7 +95,9 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
                    builder: (context){
                 return Container(
                   padding: EdgeInsets.all(20),
+                  height: 140,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       ElevatedButton.icon(onPressed: (){
                         final removedTasked = todolist.task;
