@@ -60,7 +60,16 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
           decoration: InputDecoration(
             hintText: "Update your task...",
             contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-            border: OutlineInputBorder(),
+            //border: OutlineInputBorder(),
+
+            enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: const Color.fromARGB(255, 71, 72, 72)), //  Default border color
+          ),
+            focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: const Color.fromARGB(255, 81, 81, 81), width: 2), //  Border when focused
+          ),
           ),
         ),
 
@@ -82,7 +91,12 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
             Navigator.pop(context);
               
             }
-          }, child: Text("Save",style: TextStyle(color: const Color.fromARGB(255, 103, 100, 100)),)),
+          }, 
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.grey, // background color of the save button
+            foregroundColor: Colors.black //text color
+          ),
+          child: Text("Save",)),
         ],
       );
      });
