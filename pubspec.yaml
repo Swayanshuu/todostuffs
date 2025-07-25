@@ -37,17 +37,27 @@ dependencies:
   shared_preferences: ^2.5.3
   url_launcher: ^6.1.11
   feather_icons: ^1.2.0
+  icons_launcher: ^3.0.1
+  font_awesome_flutter: ^10.8.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.4
 
 flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/images/app_icon.png"
   min_sdk_android: 21
+
+icons_launcher:
+  image_path: 'assets/whatsapp.jpg'
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
