@@ -51,7 +51,7 @@ flutter_launcher_icons:
   image_path: "assets/images/app_icon.png"
   min_sdk_android: 21
 
-icons_launcher:
+icons_launcher: 
   image_path: 'assets/whatsapp.jpg'
   platforms:
     android:
