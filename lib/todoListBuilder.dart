@@ -109,7 +109,7 @@ class _TodolistbuilderState extends State<Todolistbuilder> {
                    builder: (context){
                 return Container(
                   padding: EdgeInsets.all(20),
-                  height: 180,
+                  height: 160,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
